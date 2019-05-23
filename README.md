@@ -95,7 +95,7 @@ node index -j "../json/playlist.json"
 
 ## Screenshots
 
-![alt text](screenshot/progress.png "Progress")
+![alt text](screenshot/progress.gif "Progress")
 
 ![alt text](screenshot/example.png "Example")
 
