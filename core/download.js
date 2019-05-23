@@ -57,17 +57,6 @@ function logUpdate() {
   process.stdout.write(tick + download);
 }
 
-// function downloadProgress(percentBar) {
-//   return (chunkLength, downloaded, total) => {
-//     if (THREADS === 1) {
-//       const floatDownloaded = downloaded / total;
-//       process.stdout.clearLine();
-//       process.stdout.cursorTo(0);
-//       process.stdout.write("--- " + percentBar.update(floatDownloaded));
-//     }
-//   }
-// }
-
 function downloadError(outputFilePath,callback) {
   return (e) => {
     try {
@@ -93,12 +82,9 @@ function downloadVideo(playlistItem, outputFilePath, callback) {
 
     try {
 
-        // var percentBar = new Progress(20);
-
         const url = 'https://www.youtube.com/watch?v=' + playlistItem.videoId;
         const stream = Ytdl(url, { filter: (format) => format.container === 'mp4'});
         stream.pipe(fs.createWriteStream(outputFilePath));
-        // stream.on('progress', downloadProgress(percentBar));
         stream.on('error', downloadError(outputFilePath,callback));
         stream.on('end', downloadEnd(playlistItem,callback));
 
@@ -114,12 +100,9 @@ function downloadAudio(playlistItem, outputFilePath, callback) {
 
     try {
 
-        // var percentBar = new Progress(20);
-
         const url = 'https://www.youtube.com/watch?v=' + playlistItem.videoId;
         const stream = Ytdl(url, { quality: 'highestaudio' });
 
-        // stream.on('progress', downloadProgress(percentBar));
         stream.on('error', downloadError(outputFilePath,callback));
         stream.on('end', downloadEnd(playlistItem,callback));
 
@@ -156,7 +139,6 @@ function download(playlist) {
             const extension = playlist.isVideo() ? 'mp4' : 'mp3';
             const pathName = playlist._arrangePathName(item.title);
             const output = `${playlist.getDirPath()}/${pathName}.${extension}`.trim();
-            // console.log("--- " + position + " Starting _ " + item.title);
             currentDownloads.set(position,`#${position} :: ${item.title}`);
 
             if (item.title.toLowerCase() == "private video") { // should be more clever than this check :(

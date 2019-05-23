@@ -20,7 +20,6 @@ ffmpeg (for audio)
 * [Got](https://github.com/sindresorhus/got) Simplified HTTP requests
 * [Joi](https://github.com/hapijs/joi) Object schema validation
 * [Commander](https://github.com/tj/commander.js) Node.js command-line interfaces made easy
-* [Clui](https://github.com/nathanpeck/clui) Command-line UI toolkit for Node.js
 
 ### Install
 
