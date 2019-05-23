@@ -14,9 +14,12 @@ program
     .option('-f, --format <format>', 'output format (video || audio)', /^(video|audio)$/i, 'video')
     .option('-o, --output <output>', 'output folder name (default: playlist name)')
     .option('-r, --range <a>-<b>', 'items range, must be like a-b', function (val) { return val.split('-').map(Number); })
-    .option('-j, --json <json>', 'options from .json file (overrides other options)');
+    .option('-j, --json <json>', 'options from .json file (overriden by other options)')
+    .option('-t, --threads <threads>', 'amount of concurrent downloads', function(val) { let v = parseInt(val); return isNaN(v) ? 6 : v});
 
 program.parse(process.argv);
+
+console.log(program);
 
 const playlist = Playlist.parseFromCmd(program);
 

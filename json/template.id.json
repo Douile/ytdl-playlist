@@ -1,0 +1,6 @@
+{
+  "id": "VIDEO_ID_HERE",
+  "range": [0, 10],
+  "format": "audio",
+  "output": "PLAYLIST_OUTPUT_HERE"
+}

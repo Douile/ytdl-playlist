@@ -6,7 +6,7 @@
   "scripts": {
     "test": "lab --assert code"
   },
-  "author": "m-cakir",
+  "author": "m-cakir, Douile",
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",
@@ -15,10 +15,10 @@
     "fluent-ffmpeg": "^2.1.2",
     "got": "^9.1.0",
     "joi": "^13.6.0",
-    "ytdl-core": "^0.24.0"
+    "ytdl-core": ">=0.26.0"
   },
   "app": {
-    "api_key": "YOUTUBE_DATA_API_KEY"
+    "api_key": "YOUR_API_KEY"
   },
   "devDependencies": {
     "lab": "^16.0.0",

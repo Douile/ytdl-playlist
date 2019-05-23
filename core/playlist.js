@@ -15,11 +15,12 @@ const PLAYLIST_SCHEMA = Joi.object().keys({
 
 class Playlist {
 
-    constructor(format, id, range, output) {
+    constructor(format, id, range, output, threads) {
         this.format = format;
         this.id = id;
         this.output = output;
         this.range = range;
+        this.threads = threads;
     }
 
     static get schema() {
@@ -50,20 +51,21 @@ class Playlist {
         this._items = list;
     }
 
-    static parseFromCmd({ url, format, id, range, json: jsonFilePath, output }) { // program object
+    static parseFromCmd({ url, format, id, range, json: jsonFilePath, output, threads }) { // program object
 
         var data = {
             format: format,
             output: output
         };
 
-        if (id) data.id = id;
-        if (range) data.range = range;
-        if (url) data.url = url;
-
         if (jsonFilePath) {
             data = Object.assign(data, require(jsonFilePath));
         }
+
+        if (id) data.id = id;
+        if (range) data.range = range;
+        if (url) data.url = url;
+        if (threads) data.threads = threads;
 
         if (data.url) data.id = data.url.split('list=')[1].split('&')[0];
 
@@ -72,8 +74,8 @@ class Playlist {
         return Playlist.parseFromObject(parameters);
     }
 
-    static parseFromObject({ format, id, range, output }) {
-        return new Playlist(format, id, range, output);
+    static parseFromObject({ format, id, range, output, threads }) {
+        return new Playlist(format, id, range, output, threads);
     }
 
     getFolderName() {
@@ -128,9 +130,10 @@ class Playlist {
         console.log(" > id     \t: " + this.id);
         console.log(" > format \t: " + this.format);
         if (this.range)
-            console.log(" > range \t: " + this.range[0] + "-" + (this.range[1] || this.range[0]));
+            console.log(" > range \t: " + this.range[0] + "-" + (this.range[1] < 1 ? 'End' : this.range[1] || this.range[0]));
         console.log(" > output dir \t: downloads/" + this.getFolderName());
         console.log(" > total items \t: " + this.items.length);
+        console.log(" > threads \t: " + this.threads);
         console.log("-".repeat(31));
     }
 }

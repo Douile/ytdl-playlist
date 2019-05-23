@@ -1,6 +1,6 @@
 # Youtube Playlist Downloader
 
-Downlad Youtube playlist videos as video or audio with command line tool.
+Download Youtube playlist videos as video or audio with command line tool.
 
 ### Prerequisites
 
@@ -46,6 +46,7 @@ __Options__
        -i, --id                       youtube playlist id
        -r, --range                    playlist items range, must be like a-b
        -j, --json                     options from .json file (overrides other options)
+       -t, --threads                  amount of concurrent downloads
 
 __Options json file format__
 

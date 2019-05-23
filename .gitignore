@@ -3,3 +3,7 @@ node_modules
 npm-debug.log
 package-lock.json
 *.sqlite
+downloads/*
+json/*
+!json/template.id.json
+!json/template.url.json
