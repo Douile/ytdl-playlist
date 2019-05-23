@@ -19,8 +19,6 @@ program
 
 program.parse(process.argv);
 
-console.log(program);
-
 const playlist = Playlist.parseFromCmd(program);
 
 (async function () {
